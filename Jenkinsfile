@@ -41,10 +41,10 @@ node('slave_docker'){
    stage ('docker build and push'){
       try {
        sh "docker version"
-       sh "docker build -t rbngtm1/archiveartifacts:newtag -f Dockerfile ."
-       sh "docker run -p 8080:8080 -d rbngtm1/archiveartifacts:newtag"
-       withDockerRegistry(credentialsId: 'docker-hub-registry') {
-       sh "docker push rbngtm1/archiveartifacts:newtag"
+       sh "docker build -t srikanta1219/archiveartifacts:newtag -f Dockerfile ."
+       sh "docker run -p 8080:8080 -d srikanta1219/archiveartifacts:newtag"
+       withDockerRegistry(credentialsId: 'DockerHub') {
+       sh "docker push srikanta1219/archiveartifacts:newtag"
         }
       } catch(err) {
          sh "echo error in docker build and pushing to docker hub"
