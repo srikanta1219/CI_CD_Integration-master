@@ -42,7 +42,7 @@ node('slave_docker'){
       try {
        sh "docker version"
        sh "docker build -t srikanta1219/archiveartifacts:newtag -f Dockerfile ."
-       sh "docker run -p 8080:8080 -d srikanta1219/archiveartifacts:newtag"
+       sh "docker run -p 8099:8080 -d srikanta1219/archiveartifacts:newtag"
        withDockerRegistry(credentialsId: 'DockerHub') {
        sh "docker push srikanta1219/archiveartifacts:newtag"
         }
