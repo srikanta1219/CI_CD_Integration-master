@@ -55,9 +55,9 @@ node('slave_docker'){
       try {
         sshagent(['ec2-user-target']){
            // clone the repo on target in tmp
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@10.0.0.163 /tmp/CI_CD_Integration/tomcat.sh"
-            sh "scp -o StrictHostKeyChecking=no addressbook_main/target/addressbook.war ec2-user@10.0.0.163:/tmp"
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@10.0.0.163 /tmp/CI_CD_Integration/symlink_target.sh"
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.138.217 /tmp/CI_CD_Integration/tomcat.sh"
+            sh "scp -o StrictHostKeyChecking=no addressbook_main/target/addressbook.war ec2-user@54.234.138.217:/tmp"
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.138.217 /tmp/CI_CD_Integration/symlink_target.sh"
             }
         } catch(err) {
            sh "echo error in deployment of an application"
