@@ -70,7 +70,7 @@ node('slave_docker'){
        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS_Creds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
       //  withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) { 
          sh "aws s3 ls"
-         sh "aws s3 cp addressbook_main/target/addressbook.war s3://cloudyeticicd/"
+         sh "aws s3 cp addressbook_main/target/addressbook.war s3://srikantaartifact/"
          }
       } catch(err) {
          sh "echo error in sending artifacts to s3"
