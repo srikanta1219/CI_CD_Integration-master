@@ -1,6 +1,6 @@
 def mvnHome
 
-node('node'){
+node('slave_docker'){
    stage('git checkout'){
       try {
       git credentialsId: 'githubCreds', url: 'https://github.com/srikanta1219/CI_CD_Integration-master.git'
