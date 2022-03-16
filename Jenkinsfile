@@ -3,7 +3,7 @@ def mvnHome
 node('node'){
    stage('git checkout'){
       try {
-      git credentialsId: 'git-token', url: 'https://github.com/rbngtm1/CI_CD_Integration'
+      git credentialsId: 'githubCreds', url: 'https://github.com/srikanta1219/CI_CD_Integration-master.git'
       } catch(err) {
          sh "echo error in checkout"
       }
