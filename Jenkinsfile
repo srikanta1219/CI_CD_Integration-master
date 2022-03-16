@@ -51,23 +51,24 @@ node('slave_docker'){
       }
    }
 
-   stage('deployment of application') {
-      try {
-        sshagent(['ec2-user-target']){
+//   stage('deployment of application') {
+//      try {
+//        sshagent(['ec2-user-target']){
            // clone the repo on target in tmp
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.138.217 /tmp/CI_CD_Integration/tomcat.sh"
-            sh "scp -o StrictHostKeyChecking=no addressbook_main/target/addressbook.war ec2-user@54.234.138.217:/tmp"
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.138.217 /tmp/CI_CD_Integration/symlink_target.sh"
-            }
-        } catch(err) {
-           sh "echo error in deployment of an application"
-        }
-   }
+  //          sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.138.217 /tmp/CI_CD_Integration/tomcat.sh"
+  //          sh "scp -o StrictHostKeyChecking=no addressbook_main/target/addressbook.war ec2-user@54.234.138.217:/tmp"
+  //          sh "ssh -o StrictHostKeyChecking=no ec2-user@54.234.138.217 /tmp/CI_CD_Integration/symlink_target.sh"
+   //         }
+   //     } catch(err) {
+   //        sh "echo error in deployment of an application"
+//        }
+//   }
       
    stage('artifacts to s3') {
       try {
       // you need cloudbees aws credentials
-      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+     // withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) { 
          sh "aws s3 ls"
          sh "aws s3 cp addressbook_main/target/addressbook.war s3://cloudyeticicd/"
          }
